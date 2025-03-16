@@ -1,0 +1,70 @@
+label {
+    border: 0
+}
+
+main {
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+footer {
+    /* bottom: 0; */
+    /* position: fixed */
+}
+
+label:hover {
+    background-color: transparent;
+}
+
+.header {
+    margin: 0 auto;
+    width: 80%;
+    font-size: 2.25rem;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+    font-weight: 630;
+    align-self: center;
+    transform: translateX(5%);
+    /* align-self: center; */
+}
+
+.highlight {
+    color: var(--cta-color)
+}
+
+.cta-btn {
+    background-color: black;
+    /* border: 1px solid black; */
+    color: white;
+}
+
+.redirect {
+    /* text-decoration: underline; */
+    font-size: .84rem;
+    
+}
+
+
+@media only screen and (max-width: 900px) {
+    body, main {
+        margin: 0;
+        padding: 0;
+    }
+    .signupForm, .loginForm {
+        width: 100%;
+        padding: 0;
+    }
+    .header {
+        width: 80%;
+        margin: 0;
+        padding: 0;
+        align-self: center;
+        font-size: 1.75rem;
+        transform:translateX(0);
+    }
+
+    footer {
+        margin-top: 4%
+    }
+}

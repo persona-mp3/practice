@@ -8,7 +8,8 @@
     --cta-color: rgb(84, 245, 151);
     --highlight-color:   rgba(131, 253, 182, 0.71);
     --hover-color:  rgba(70, 170, 252, 0.904);
-    /* --cta-color:  rgba(70, 170, 252, 0.904); */
+    --hover-color: rgba(108, 254, 169, 0.535);
+    --cta-color:  rgba(70, 170, 252, 0.904);
     --border-radius: .6rem;
     --img-radius: .8rem;
 }
@@ -46,12 +47,42 @@ a {
     font-weight: 300;
 }
 
+a {
+    font-weight: 350;
+    font-size: 1rem;
+    position: relative;
+    text-transform: uppercase;
+    /* padding-top: .8rem; */
+    padding-bottom: .12rem;
+}
+
+ a::before {
+    content: " ";
+    position: absolute;
+    width: 0%;
+    height: .1rem;
+    background-color: grey;
+    top: 100%;
+    transition: all ease 0.6s
+}
+
+a:hover {
+    cursor: pointer;
+
+}
+
+a:hover::before {
+    width: 100%;
+    transition: all ease 0.6s;
+}
+
+
 
 button {
     border: var(--grey-border);
     padding: 1rem;
-    padding-left: 2.55rem;
-    padding-right: 2.55rem;
+    padding-left: 1.45rem;
+    padding-right: 1.45rem;
     text-align: center;
     text-transform: uppercase;
     border-radius: var(--border-radius);
@@ -62,7 +93,6 @@ button {
 section {
     margin: 0 auto;
 }
-
 
 
 
@@ -90,12 +120,15 @@ section {
 
 .cta-link {
     padding: .6rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    background-color: var(--cta-color);
+    padding-left: 1rem;
+    padding-right: 1rem;
     border-radius: .6rem;
-}
+} 
 
+/* .cta-link::before {
+    all: revert;
+}
+ */
 .cta-btn {
     background-color: var(--cta-color);
     border: inherit;
@@ -153,7 +186,7 @@ nav {
 }
 
 .nav-links {
-    gap: 4rem;
+    gap: 2.5rem;
 }
 
 .logo-div {
@@ -232,6 +265,7 @@ nav {
     align-items: flex-start;
     gap: .8rem;
     margin-left: -30%;
+    transform: translateX(-20%);
 }
 
 
@@ -458,12 +492,18 @@ input:hover {
     /* border: 1px solid red; */
     padding-top: 4rem;
     padding-bottom: 1rem;
-    background-color: var(--hover-color); 
+    background-color: black;
+    color: white;
     width: 100%;
     justify-content: center;
     gap: 1rem;
     /* width: 100%; */
 
+}
+
+
+.about-section .hero-body .hero-header {
+    font-weight: 600;
 }
 
 
@@ -489,36 +529,212 @@ footer {
     padding-bottom: 1.5rem;
     align-items: center;
     width: 100%;
-    background-color: var(--hover-color);
+    background-color: black;
+    color: white
     
 }
 
- a {
-    font-weight: 350;
-    font-size: 1rem;
-    position: relative;
-    text-transform: uppercase;
-    /* padding-top: .8rem; */
-    padding-bottom: .12rem;
+
+
+
+.signupForm, .loginForm {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    gap: .8rem;
 }
 
- a::before {
-    content: " ";
-    position: absolute;
-    width: 0%;
-    height: .14rem;
-    background-color: grey;
-    top: 100%;
-    transition: all ease 0.6s
+.signupForm label,.loginForm label {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--min-gap)/2);
+    width: 70%;
 }
 
-a:hover {
-    cursor: pointer;
-
+.signupForm label input, .loginForm label input{
+    border-radius: .3rem;
 }
 
-a:hover::before {
-    width: 100%;
-    transition: all ease 0.6s;
+
+
+@media only screen and (max-width: 900px) {
+
+    body, main {
+        overflow-x: hidden;
+    }
+
+
+    .nav-links {
+        display: none;
+    }
+    .hero, .carbon-footprint, .newsletter {
+        flex-direction: column-reverse;
+        /* background-color: black; */
+        /* color: white; */
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .logo {
+        font-size: 1rem;
+    }
+
+    .hero .cta-container {
+        /* width: 100%; */
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        /* flex-wrap: wrap; */
+    }
+
+    .hero .cta-container button {
+        width: 90%;
+    }
+
+    .carbon-footprint .hero-body .cta-container {
+        width: 100%
+    }
+
+    .carbon-footprint .hero-body .cta-container .cta-btn {
+        width: 90%;
+    }
+    .newsletter  .advert {
+        width: 100%;
+        
+    }
+
+    .newsletter {
+        flex-direction: column;
+        width: 100%;
+        margin:0;
+        align-items: flex-start;
+        text-align: center;
+        gap: .4rem;
+        margin-top: 4%;
+        /* padding-left: 2cqmin; */
+    }
+
+    .newsletter  .advert .header {
+        font-size: 2.25rem;
+        /* margin: 0 auto */
+        /* width: 100%; */
+        margin: 0;
+        /* padding-left: .8rem; */
+        margin: 0 auto;
+        width: fit-content;
+        align-self: center;
+        text-align: center;
+
+    }
+
+    .newsletter .advert {
+        margin: 0;
+        text-align: left;
+    }
+
+    
+    
+    #newsletter-form {
+        margin: 0;
+        width: 100%;
+        align-items: flex-start;
+        /* padding-left: 4% */
+    }
+    
+ 
+    #newsletter-form label{
+        width: 100%; 
+        visibility: hidden;
+        padding-left: .6rem
+    }
+
+    #newsletter-form input {
+        text-align: left;
+        margin: 0 auto
+    }
+
+    #newsletter-form .cta-btn {
+        width: 60%;
+        margin: 0 auto
+    }
+
+    #newsletterinput  {
+        width: 80%;
+    }
+    .hero-body {
+        width: 90%;
+        align-items: flex-start;
+    }
+    .hero .hero-img, .carbon-footprint .hero-img {
+        width: 100%;
+    }
+
+    .hero-header {
+        width: 100%;
+        font-size: 3rem;
+    }
+
+    .hero-text {
+        padding: 0;
+        width: 100%;
+    }
+    .cta-container {
+        margin: 0;
+        transform: translate(0%);
+        align-self: flex-start;
+    }
+
+
+    .service-container {
+        flex-direction: row;
+        overflow: auto;
+        max-width: 90%;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 100%;
+        padding-top: .2rem;
+        padding-bottom: .2rem;
+        gap: .8rem
+    }
+
+    .service-container .card {
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 90%;
+        /* aspect-ratio: 16/9; */
+    }
+
+    .about-section {
+        flex-direction: column;
+        padding-left: .6rem;
+    }
+
+    .about-section * {
+        width: 90%;
+    }
+
+    .about-section .hero-img {
+        max-width: 0;
+
+    }
+
+    
+    .service-container .card-img img {
+        max-width:100%;
+        /* aspect-ratio: 16/9; */
+    }
+
+    footer {
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 2rem
+    }
 }
+
 

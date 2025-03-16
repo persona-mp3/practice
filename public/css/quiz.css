@@ -12,8 +12,12 @@
 
 .questionnaire-section {
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
 }
+
 
 
 .checked  {
@@ -30,7 +34,8 @@
     justify-content: center;
     gap: .8rem;
     align-items: center;
-    position: relative
+    position: relative;
+    align-self: center;
 }
 
 label {
@@ -105,9 +110,7 @@ label:hover {
 }
 
 footer {
-    /* margin-top: 100%; */
-    position: fixed;
-    bottom:0;
+    bottom:10%;
 }
 
 .result{
@@ -135,4 +138,24 @@ canvas {
 
 canvas:hover {
     cursor: crosshair;
+}
+
+
+.currPage {
+    align-self: center;
+    margin-left: 30%;
+    transform: translateX(-30%);
+    font-weight: bold;
+    border-bottom: 2px solid var(--hover-color)
+}
+
+@media only screen and (max-width: 900px) {
+    input, label, .questionnaire-form {
+        width: 90%;
+    }
+
+    .error-msg {
+        font-size: 1rem;
+        width: fit-content;
+    }
 }
