@@ -5,9 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="../public/css/base.css">
-    <script defer type="module" src="../public/js/index.js"></script>
+    <link rel="stylesheet" href="../public/css/quiz.css">
+    <script defer type="module" src="../public/js/quiz.js"></script>
 </head>
 <body>
-    Questionnaire page
+
+    <nav class="flex__row">
+
+        <a href="index.html">Back</a>
+
+        <div class="nav-links flex__row">
+            <a href="#">Services</a>
+            <a href="#">About us</a>
+            <button  class="cta-btn">Create Account</button>
+        </div>
+    </nav>
+
+
+    <main>
+
+        <section class="questionnaire-section">
+            <form class="questionnaire-form">
+                <p class="error-msg">Please select an option</p>
+                <p class="question-header">
+                    How much do you spend on electricity monthly (kWH)
+                </p>
+
+                <label>
+                    About 50000 kilowatts
+                    <input type="radio"  class="quiz-checkbox" value="5000" name="q1">
+                </label>
+
+
+                <label>
+                    About 8000 kilowatts
+                    <input type="radio"  class="quiz-checkbox" value="8000" name="q1">
+                </label>
+
+
+                <label>
+                    About 90000 kilowats
+                    <input type="radio"  class="quiz-checkbox" value="9000" name="q1">
+                </label>
+
+
+                <label>
+                    About 50000 kilowatts
+                    <input type="radio"  class="quiz-checkbox" name="q1">
+                </label>
+
+
+                <button type="submit" class="quiz-btn">Next</button>
+
+
+            </form>
+
+        </section>
+
+
+        <section class="result">
+            <p class="header">Carbon Footprint results</p>
+
+            <canvas id="myChart"></canvas>
+        </section>
+
+        
+    </main>
+
+
+    <footer>
+        <div class="logo-div"><h2 class="logo">cartiercrashers</h2></div>
+
+        
+        <a>FAQ</p>
+        <a href="#">NEWSLETTER</a>
+        <a href="#">PRIVACY </a>
+        <a href="#">CONTACT</a>
+        <a href="#">SERVICES</a>
+        <a href="#">ABOUT</a>
+        <a href="#">CREATE ACCOUT</a>
+    </footer>
+
+
+  
 </body>
-     
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</html>

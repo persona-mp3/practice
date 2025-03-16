@@ -1,0 +1,35 @@
+
+const jsStuff = (e) => {
+    return false
+
+
+}
+const yeh = jsStuff()
+
+
+
+
+if (!yeh) {
+    console.log('that means the function returns false and is true because if () automatically checks for true statements');
+    // if() --> true
+    // !yeh negates the returned value
+
+    // if yeh returned FALSE
+    // yeh's returned value is transoformed by !--> ! vs FALSE ---> TRUE
+    // true,  TRUE ---> TRUE
+    // if true --> then it true
+
+
+    // if yeh returned TRUE
+    // ! VS TRUE ---> FALSE
+    // TRUE VS FALSE ---> FALSE
+    // true, false ---> false
+
+    // a value is always true when two comparisons are true otherwise false, 
+    // except when operators have a role like && or ||
+
+
+} else {
+    console.log('this means the function returns true because the function does not actually return false')
+}
+
