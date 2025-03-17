@@ -1,5 +1,7 @@
 const signupForm = document.querySelector('.signupForm');
 const localhost = new URL(`http://localhost:8080/signup`);
+const errorMsg = document.querySelector('.error-msg');
+const submitBtn = document.querySelector('.cta-btn')
 
 // fetch API is js native http request API that replaced the bulky XML API
 // other js  API's include axios but is not native to js but managed by open source
@@ -37,8 +39,27 @@ async function sendData(form) {
     
     
         const data = await response.json()
-        console.log('response has been sent, awaiting data')
-    
+
+        if (response.status === 406) {
+            errorMsg.classList.add('onerror')
+            return;
+        }
+        
+        if (response.status === 200) {
+            submitBtn.disabled = true;
+            submitBtn.setAttribute("style", "background-color: grey")
+            errorMsg.classList.remove('onerror')
+            errorMsg.classList.add('onsuccess')
+            errorMsg.innerText = data.message
+
+            setTimeout(() => {
+                location.href = 'login.html'
+            }, 3000)
+            return;
+
+        }
+
+            
     } catch (err) {
         console.log('fetch event didn;t occur -->', err)
     }
@@ -56,5 +77,4 @@ signupForm.addEventListener('submit', async (evt) => {
         return;
     }
 
-    console.log('all fields have been filled', isComplete)
 })

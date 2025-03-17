@@ -1,5 +1,9 @@
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
+import mysql from 'mysql2'
+
+
+import { saveUserQuery } from './sqldb.js'
 
 dotenv.config()
 
@@ -10,14 +14,18 @@ const userObj = {
     password: 'Aphe Mike'
 }
 
-export async function saveUser(userObj){
+
+// this function takes the details sent in by the user and gets the password property
+// it is here that it hashes the password and updates the password property in the userObj
+// and then returns the userObj with the updatedProperty
+export async function hashUser(userObj){
     if (userObj.email === undefined || userObj.email.trim() === '') {
-        console.log('invalid email --> saveUser')
+        console.log('hash unsucesssful')
         return ;
     }
 
     if (userObj.password === undefined || userObj.password === '' || userObj.password.trim() === '') {
-        console.log('invalid password')
+        console.log('hash unsucesssful')
         return;
     }
     try {
@@ -26,15 +34,55 @@ export async function saveUser(userObj){
 
         // update userObj with hashedPassword;
         userObj.password = hashedPass;
-        globalUser.email = userObj.email;
-        globalUser.password = userObj.password
-        console.log('user saved successfully')
+        console.log('hash successful')
         return userObj;
 
      } catch (err) {
-        return err
+        throw err
     }
 }
+
+
+// this function uses the hash function and  
+// databaseQuery function that saves the user to the database
+
+export async function executeSaveUser(userObj) {
+    try {
+
+        const hashedObj = await hashUser(userObj);
+
+        if (hashedObj === undefined) {
+            // user password or email were not found or empty strings
+            return 400
+        }
+
+        const isUserSaved = await saveUserQuery(hashedObj);
+
+        if (isUserSaved === 400) {
+            // the user was not saved to the db becuase empty values were found
+            return 400
+        }
+
+        // user was saved to database
+        return 200
+
+
+
+     } catch (err) {
+        throw err
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -62,7 +110,9 @@ export async function authenticateUser(userObj, savedObj) {
 
         console.log('passwords are the same')
      }catch (err) {
-        return err
+
+        
+        throw err
     }
 }
 

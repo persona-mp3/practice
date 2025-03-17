@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors'
 
-import { saveUser, authenticateUser } from './tools.js';
+import { executeSaveUser, authenticateUser } from './tools.js';
 
 
 dotenv.config()
@@ -18,7 +18,7 @@ app.use(cors({
     optionSuccessStatus: 200
 }))
 
-
+ 
 
 // middlewares
 app.use(express.json())
@@ -27,13 +27,28 @@ app.use(morgan('dev'))
 
 app.post('/signup', async (req, res) => {
     const userDetails = req.body
-    const hashedPass = await saveUser(userDetails)
-    if (hashedPass === undefined) {
-        res.send({message: 'save was unsuccessfull'});
+    try { 
+        const response = await executeSaveUser(userDetails)
+        if (response === 400) {
+            console.log('email or password is invalid -->', response)
+            return;
+        }
+
+        console.log('user was saved to db -->', response)
+        res.status(200).send({message: 'Registration was successful'})
+
+    } catch (err) {
+
+        if (err === 1062) {
+            console.log('duplicate error-->', err)
+            res.status(406).send({message: err})
+        } else {
+            console.log('unexpected err -->', err)
+        }
+
     }
 
-    console.log(hashedPass)
-    res.status(200).send({message: 'fixed?'})
+
     
 })
 

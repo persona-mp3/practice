@@ -109,6 +109,13 @@ label:hover {
     transition: var(--transition);
 }
 
+.onsuccess {
+    opacity: 1;
+    color: green;
+    border-bottom: 1px solid green;
+    transition: var(--transition);
+}
+
 footer {
     bottom:10%;
 }

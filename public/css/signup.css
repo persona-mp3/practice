@@ -17,6 +17,16 @@ label:hover {
     background-color: transparent;
 }
 
+.error-msg {
+    align-self: center;
+    width: fit-content;
+    margin: 0;
+    font-size: 1.12rem;
+    text-transform: uppercase;
+}
+
+
+
 .header {
     margin: 0 auto;
     width: 80%;
