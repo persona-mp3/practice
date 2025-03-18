@@ -3,16 +3,10 @@ import dotenv from 'dotenv'
 import mysql from 'mysql2'
 
 
-import { saveUserQuery } from './sqldb.js'
+import { checkUserQuery, saveUserQuery } from './sqldb.js'
 
 dotenv.config()
 
-
-const globalUser = {}
-const userObj = { 
-    email: 'Aphex Twin',
-    password: 'Aphe Mike'
-}
 
 
 // this function takes the details sent in by the user and gets the password property
@@ -43,7 +37,7 @@ export async function hashUser(userObj){
 }
 
 
-// this function uses the hash function and  
+// this function uses the hash function to hash the users password and  
 // databaseQuery function that saves the user to the database
 
 export async function executeSaveUser(userObj) {
@@ -77,58 +71,48 @@ export async function executeSaveUser(userObj) {
 
 
 
+export async function authenticator(userObj) {
+    // import db query and user the response
+    const userEmail = userObj.email;
+    const userPass = userObj.password;
 
-
-
-
-
-
-
-
-
-export async function authenticateUser(userObj, savedObj) {
-    if (userObj.email === undefined || userObj.email.trim() === ''  ||  savedObj.email === undefined ||savedObj.email.trim() === '') {
-        console.log('invalid email')
-        return;
+    if (userEmail === undefined || userEmail.trim() === ''|| userPass === undefined || userPass.trim() === '' ) {
+        return 'invalid credentials'
     }
 
-    if (userObj.password === undefined || userObj.password.trim() === ''  ||  savedObj.password === undefined ||savedObj.password.trim() === '') {
-        console.log('invalid password')
-        return;
-    }
+    try { 
+        const dbResponse = await checkUserQuery(userEmail);
 
-    try {
-        let loginPass = userObj.password;
-        let hashedPass = savedObj.password
-        // bcrypt.compare() takes in the plain string and hasehdPass as argumnents and returns a boolean
-        const isPassValid = await bcrypt.compare(loginPass, hashedPass)
-
-        if (!isPassValid) {
-            console.log('these passwords are not the same', loginPass, hashedPass)
+        if (dbResponse === undefined ) {
+            console.log('unexpected database error')
             return;
         }
 
-        console.log('passwords are the same')
-     }catch (err) {
+        // dbResponse returns false if user does not exist
+        if (!dbResponse) {
+    
+            return 0;
+        }
 
+
+        console.log('userExists, data below----')
+        console.log(dbResponse)
         
+        const dbPass = dbResponse.password;
+        
+        // bcryptcompare takes the plain string and hashedPassword
+        const isValid = await bcrypt.compare(userPass, dbPass)
+
+        // bcryptcompare returns true if the two passwords match
+        if (!isValid) {
+            return false
+        }
+
+        return true
+
+
+    } catch (err) {
         throw err
     }
+
 }
-
-
-const sandbox = {
-    email: '',
-    password: 'Aphex Mike',
-}
-
-const foo = async () => {
-    let hashedPass = await saveUser(sandbox);
-    if (hashedPass === undefined) {
-        return;
-    }
-
-    let auth = await authenticateUser(userObj, hashedPass)
-}
-
-// await foo()

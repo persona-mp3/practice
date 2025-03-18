@@ -6,13 +6,14 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors'
 
-import { executeSaveUser, authenticateUser } from './tools.js';
+import { executeSaveUser, authenticator } from './tools.js';
 
 
 dotenv.config()
 const app = express()
 const PORT = process.env.PORT;
-// cors is configured to only allow requested from the vscode live server
+// cors is configured to only allow request from the vscode live server
+// you can update yours accordingly or remove it
 app.use(cors({
     origin: `http://127.0.0.1:5500`,
     optionSuccessStatus: 200
@@ -24,6 +25,9 @@ app.use(cors({
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(morgan('dev'))
+
+
+// routes
 
 app.post('/signup', async (req, res) => {
     const userDetails = req.body
@@ -53,13 +57,48 @@ app.post('/signup', async (req, res) => {
 })
 
 app.post('/login', async(req, res) => {
-    console.log(req.body)
-    res.status(200).send({message: 'fixed?'})
+    const userObj = req.body;
+    try { 
+
+        const isCredValid = await authenticator(userObj)
+
+        if (isCredValid === undefined) {
+            console.log(500);
+            return
+        }
+
+        if (isCredValid === 0 ) {
+            console.log('userExists -->', false)
+            console.log('granted -->', false)
+            res.status(404).send({msg: 'Email not found'})
+            return;
+        }
+
+        if (!isCredValid) {
+            // expect to be false
+            console.log('passwordMatch -->' ,isCredValid)
+            console.log('granted -->', isCredValid)
+            res.status(401).send({msg: 'Invalid Credentials'})
+            return;
+        }
+
+        
+
+        
+        console.log('granted -->',isCredValid);
+        
+        res.status(200).send({msg: 'Access Granted'})
+
+
+
+    } catch (err) {
+        console.log(err)
+    }
+
 })
 
 
 
 app.listen(PORT, () => {
     console.log('[server....] is active on port --->', PORT);
-    // console.clear() 
 })

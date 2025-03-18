@@ -1,19 +1,22 @@
 const loginForm = document.querySelector('.loginForm');
-const localhost = new URL(`http://localhost:8080/login`);
+const errorMsg = document.querySelector('.error-msg')
+
+
 
 // fetch API is js native http request API that replaced the bulky XML API
 // other js  API's include axios but is not native to js but managed by open source
 
 async function sendData(form) { 
-    
     const formData = new FormData(form)
     const userData = {}
     
     // formData has an iterable method  using object.entries() which returns the keys and values in strings
     for (let [name, value] of formData.entries()) {
 
-        if (value === '') {
+        if (value.trim() === '' || value === undefined) {
             console.log('value -->', value)
+            errorMsg.innerText = 'All fields must be filled'
+            errorMsg.classList.add('onerror')
             return 0;
         
         }
@@ -24,9 +27,11 @@ async function sendData(form) {
 
     
 
-    console.log(userData)
+    // console.log(userData)
 
     try { 
+        const localhost = new URL(`http://localhost:8080/login`);
+
         const response = await fetch(localhost, {
             method: 'POST',
             headers: {
@@ -34,10 +39,28 @@ async function sendData(form) {
             },
             body: JSON.stringify(userData)
         } )
-    
-    
+        
         const data = await response.json()
-        console.log('response has been sent, awaiting data')
+
+
+        if (response.status === 404) {
+            errorMsg.innerText = data.msg
+            return;
+        }
+
+        if (response.status === 401) {
+            errorMsg.innerText = data.msg
+            return
+
+        }
+
+        if (response.status === 200) {
+            errorMsg.innerText = data.msg
+            errorMsg.classList.remove('onerror')
+            errorMsg.classList.add('onsuccess')
+            return
+        }
+    
     
     } catch (err) {
         console.log('fetch event didn;t occur -->', err)
@@ -52,7 +75,6 @@ loginForm.addEventListener('submit', async (evt) => {
     let isComplete = await sendData(loginForm);
 
     if (isComplete === 0) {
-        alert('a field has not been field');
         return;
     }
 

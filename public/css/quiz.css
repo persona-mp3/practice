@@ -1,5 +1,5 @@
 :root {
-    --transition: all ease 0.6s;
+    --transition: all ease 0.2s;
 }
 
 
@@ -101,7 +101,7 @@ label:hover {
     border-bottom: 1px solid red;
     width: 100%;
     opacity: 0;
-    transition: all ease 0.6s;
+    transition: all ease 0.2s;
 }
 
 .onerror {
@@ -113,7 +113,7 @@ label:hover {
     opacity: 1;
     color: green;
     border-bottom: 1px solid green;
-    transition: var(--transition);
+    transition: all ease 0.2s;
 }
 
 footer {

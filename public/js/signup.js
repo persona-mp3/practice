@@ -1,5 +1,4 @@
 const signupForm = document.querySelector('.signupForm');
-const localhost = new URL(`http://localhost:8080/signup`);
 const errorMsg = document.querySelector('.error-msg');
 const submitBtn = document.querySelector('.cta-btn')
 
@@ -14,8 +13,11 @@ async function sendData(form) {
     // formData has an iterable method  using object.entries() which returns the keys and values in strings
     for (let [name, value] of formData.entries()) {
 
-        if (value === '') {
+        if (value.trim() === '' || value === undefined) {
             console.log('value -->', value)
+            errorMsg.classList.add('onerror')
+            errorMsg.innerText = 'All fields must be filled'
+
             return 0;
         
         }
@@ -26,9 +28,10 @@ async function sendData(form) {
 
     
 
-    console.log(userData)
 
     try { 
+        const localhost = new URL(`http://localhost:8080/signup`);
+
         const response = await fetch(localhost, {
             method: 'POST',
             headers: {
@@ -73,7 +76,6 @@ signupForm.addEventListener('submit', async (evt) => {
     let isComplete = await sendData(signupForm);
 
     if (isComplete === 0) {
-        alert('a field has not been field');
         return;
     }
 
