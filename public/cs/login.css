@@ -8,3 +8,17 @@ label {
 label input {
     max-width: 80%;
 }
+
+.login-form button:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid transparent;
+    transition: all ease 0.4s;
+}
+
+.disabled-btn {
+    background-color: grey;
+    border: 1px solid grey;
+    opacity: 40%;
+}
+
