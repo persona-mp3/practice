@@ -1,0 +1,10 @@
+label {
+    flex-direction: column;
+    width: 50%;
+    border: transparent;
+    gap: .4rem;
+}
+
+label input {
+    max-width: 80%;
+}

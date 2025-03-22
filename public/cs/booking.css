@@ -1,0 +1,130 @@
+form, label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-1);
+}
+
+form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+label {
+    width: 80%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+}
+
+label {
+    align-items: flex-start;
+    border: var(--grey-border)
+}
+
+label:hover {
+    cursor: pointer;
+}
+label input {
+    align-self: flex-start;
+    /* visibility: hidden; */
+}
+
+.booking-form {
+    all: revert;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto;
+    /* margin: 0 auto;
+    width: 30%; */
+}
+
+label:hover {
+    cursor: pointer !important;
+}
+
+.booking-form label{
+    all: unset;
+    width: 50%;
+    border: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: .6rem;
+    gap: .6rem;
+}
+
+.booking-form .radio-label {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: .8rem;
+    border: var(--grey-border);
+    ;
+}
+
+
+input[type="radio"] {
+    align-self: center;
+    width: fit-content;
+}
+
+input {
+    all: revert;
+    padding: .6rem;
+    border: 1px solid grey;
+    width: 100%;
+    color: black  !important;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 300;
+    /* border-radius: .1rem; */
+}
+
+.h3 {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+#active {
+    /* background-color: rgb(43, 188, 224); */
+    /* border-radius: .6rem; */
+
+    border-bottom: 2px solid lightcoral
+}
+
+
+.help * {
+    color: blue ;
+    font-weight: 400;
+}
+
+
+.info {
+    margin: 0 auto;
+    width: 50%;
+    padding: .6rem;
+    position: relative;
+}
+
+.info .h1 {
+    text-align: center;
+
+}
+
+.info .info-text{
+    padding: .1%;
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+}   
+
+
+.active {
+    align-self: center;
+    /* transform: translateX(50%); */
+}

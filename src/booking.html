@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V3</title>
+    <link rel="stylesheet" href="../public/cs/base.css">
+    <link rel="stylesheet" href="../public/cs/booking.css">
+    <script defer type="module" src="../public/js/booking.js"></script>
+</head>
+<body>
+
+    <main>
+        <nav class="nav-wrapper">
+            <div class="nav-container">
+                <h2 class="logo">RolsaTech</h2>
+
+                <!-- <p class="active">Schedule Appointment</p> -->
+
+                <div class="nav-links">
+                    <a href="./index.html">HOME</a>
+                    <a href="#">LATEST</a>
+                    <a href="#" id="active">APPOINTMENTS</a>
+                    <a href=".//login.html">LOGIN</a>
+                </div>
+    
+            </div>
+        </nav>
+
+
+    
+        <div class="info">
+            <p class="h1">Schedule an appointment</p>
+            <p class="info-text">You can book an appointment below on any of the following services we offer from consultations to equipments installations. 
+            <br>If you would want to enquire more, you could  <span class="help"><a href="#">click here</a> </span>to contact us directly or see our <span class='help'><a href="#">FAQ</a></span></p>
+
+
+            
+        </div>
+
+
+        <section class="booking">
+            <!-- <p class="hint">To be able managae your other bookings, you will need to sign up</p> -->
+            <form class="booking-form">
+                <label>
+                    First Name
+                    <input type="text" name="firstName" value="Elliot">
+                </label>
+
+                <label>
+                    Last name
+                    <input type="text" name="lastName" value="Baxter">
+                </label>
+
+                <p class="h3">Type of booking</p>
+
+                <label class="radio-label">
+                    Consultation
+                    <input type="radio" name="booking-type" value="Consultation">
+                </label>
+
+                <label class="radio-label">
+                    Installation
+                    <input type="radio" name="booking-type" value="installations">
+                </label>
+
+
+                <label class="radio-label">
+                    Other
+                    <input type="radio" name="booking-type" value="other">
+                </label>
+
+                
+                <p class="h3">Contact Details</p>
+
+                <label>
+                    Email address
+                    <p class="hint">Details will be sent to provided email </p>
+                    <input type="text" name="firstName" value="elliotbaxter@gmail.com">
+                </label>
+
+
+
+
+                <label>
+                    Location
+                    <input type="text" name="address" value="Elliot">
+                </label>
+
+
+
+                <label>
+                    Phone Number
+                    <input type="text" name="phone" value="09053505099">
+                </label>
+
+
+
+                <label>
+                    Date
+                    <p class="hint">What day are you available?</p>
+                    <input type="date" name="date">
+
+                </label>
+
+
+                <label >
+                    Time
+                    <p class="hint">What time would you be free?</p>
+                    <input type="time" name="time" value="19:21">
+                </label>
+
+
+
+
+                <button>Make Appointment</button>
+
+
+            </form>
+        </section>        
+    </main>    
+</body>
+</html>
